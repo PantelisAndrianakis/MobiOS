@@ -123,7 +123,6 @@ make qemu
 This will launch QEMU with the bootable ISO. You should see:
 1. The GRUB bootloader menu
 2. Select "MobiOS 64-bit"
-3. The MobiOS logo will appear in ASCII art
 
 ## Debugging with GDB
 
