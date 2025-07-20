@@ -1,0 +1,71 @@
+# MobiOS GRUB Theme
+# A simple, clean theme for MobiOS bootloader
+
+# Theme Info
+title-text: "MobiOS"
+title-color: "#ffffff"
+title-font: "DejaVu Sans Bold 16"
+message-font: "DejaVu Sans 12"
+message-color: "#ffffff"
+message-bg-color: "#000000"
+desktop-color: "#000080"  # Navy blue background color
+# desktop-image: "background.png"  # Uncomment this and comment the line above when you have an image
+terminal-box: "terminal_box_*.png"
+terminal-font: "DejaVu Sans Mono 12"
+
+# Boot menu
++ boot_menu {
+    left = 15%
+    width = 70%
+    top = 30%
+    height = 40%
+    item_font = "DejaVu Sans Regular 12"
+    item_color = "#cccccc"
+    selected_item_font = "DejaVu Sans Bold 14"
+    selected_item_color = "#ffffff"
+    selected_item_pixmap_style = "select_*.png"
+    icon_width = 32
+    icon_height = 32
+    item_height = 24
+    item_padding = 5
+    item_spacing = 10
+    scrollbar = true
+    scrollbar_width = 7
+    scrollbar_thumb = "slider_*.png"
+}
+
+# Boot menu title/label
++ label {
+    left = 15%
+    top = 20%
+    width = 70%
+    height = 8%
+    text = "Welcome to MobiOS"
+    color = "#ffffff"
+    font = "DejaVu Sans Bold 16"
+    align = "center"
+}
+
+# System info
++ label {
+    left = 80%
+    top = 95%
+    width = 20%
+    height = 5%
+    text = "@VERSION@"
+    color = "#ffffff"
+    font = "DejaVu Sans 10"
+    align = "right"
+}
+
+# Help text
++ label {
+    left = 0%
+    top = 95%
+    width = 100%
+    height = 5%
+    text = "Use ↑ and ↓ keys to select, Enter to boot, E to edit, C for command line"
+    color = "#cccccc"
+    font = "DejaVu Sans 10"
+    align = "center"
+}
