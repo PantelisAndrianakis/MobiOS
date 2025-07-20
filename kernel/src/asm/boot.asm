@@ -60,18 +60,6 @@ gdt64_pointer:
     dw $ - gdt64 - 1    ; Size of the GDT
     dq gdt64            ; Address of the GDT
 
-; MobiOS ASCII Art Logo with proper line endings
-mobios_logo:
-    db "  ███╗   ███╗ ██████╗ ██████╗ ██╗ ██████╗ ███████╗  ", 0x0D, 0x0A
-    db "  ████╗ ████║██╔═══██╗██╔══██╗██║██╔═══██╗██╔════╝  ", 0x0D, 0x0A
-    db "  ██╔████╔██║██║   ██║██████╔╝██║██║   ██║███████╗  ", 0x0D, 0x0A
-    db "  ██║╚██╔╝██║██║   ██║██╔══██╗██║██║   ██║╚════██║  ", 0x0D, 0x0A
-    db "  ██║ ╚═╝ ██║╚██████╔╝██████╔╝██║╚██████╔╝███████║  ", 0x0D, 0x0A
-    db "  ╚═╝     ╚═╝ ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝ ╚══════╝  ", 0x0D, 0x0A
-    db 0x0D, 0x0A
-    db "         A Lightweight x64 Operating System         ", 0x0D, 0x0A
-    db 0
-
 ; Kernel entry point
 section .text
 global _start

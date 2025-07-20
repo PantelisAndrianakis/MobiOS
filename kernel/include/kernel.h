@@ -1,4 +1,6 @@
 // kernel/include/kernel.h
+// NOTE: This code follows Allman style - all opening braces on new lines
+
 #ifndef KERNEL_H
 #define KERNEL_H
 

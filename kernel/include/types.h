@@ -1,4 +1,6 @@
 // kernel/include/types.h
+// NOTE: This code follows Allman style - all opening braces on new lines
+
 #ifndef TYPES_H
 #define TYPES_H
 

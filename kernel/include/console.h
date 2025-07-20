@@ -1,4 +1,6 @@
 // kernel/include/console.h
+// NOTE: This code follows Allman style - all opening braces on new lines
+
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
