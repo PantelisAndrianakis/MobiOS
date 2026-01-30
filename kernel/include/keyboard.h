@@ -1,5 +1,4 @@
 // kernel/include/keyboard.h
-// NOTE: This code follows Allman style - all opening braces on new lines
 
 #ifndef KEYBOARD_H
 #define KEYBOARD_H

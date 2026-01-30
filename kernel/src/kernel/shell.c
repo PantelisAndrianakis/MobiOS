@@ -1,10 +1,10 @@
 // kernel/src/kernel/shell.c
-// NOTE: This code follows Allman style - all opening braces on new lines
 
 #include "shell.h"
 #include "console.h"
 #include "keyboard.h"
 #include "kernel.h"
+#include "commands.h"
 
 // Command buffer
 static char command_buffer[MAX_COMMAND_LENGTH];
@@ -19,14 +19,13 @@ void shell_init(void)
 // Display the command prompt
 void shell_display_prompt(void)
 {
-    uint16_t prompt_x, prompt_y;
-    
-    console_write(BOOT_DISK);
-    console_write("\\>");
-    
-    // Store the current cursor position after displaying prompt
-    console_get_cursor(&prompt_x, &prompt_y);
-    prompt_row = prompt_y;
+	uint16_t prompt_x, prompt_y;
+	
+	console_write("C:\\>");
+	
+	// Store the current cursor position after displaying prompt.
+	console_get_cursor(&prompt_x, &prompt_y);
+	prompt_row = prompt_y;
 }
 
 // Read a line from the user with echoing
@@ -184,21 +183,10 @@ void shell_read_line(char* buffer, size_t max_length)
     }
 }
 
-// Process the entered command
-void shell_process_command(const char* command)
+// Process the entered command.
+void shell_process_command(const char* cmdline)
 {
-    // For now, just echo the command if it's not empty
-    if (command[0] != '\0')
-    {
-        console_write("Command: ");
-        console_write_line(command);
-    }
-    
-    // In a real shell, we would parse and execute commands here
-    // For example:
-    // if (strcmp(command, "help") == 0) { ... }
-    // else if (strcmp(command, "clear") == 0) { ... }
-    // etc.
+	commands_process(cmdline);
 }
 
 // Main shell loop

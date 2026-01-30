@@ -1,5 +1,4 @@
 // kernel/src/kernel/console.c
-// NOTE: This code follows Allman style - all opening braces on new lines
 
 #include "console.h"
 #include "kernel.h"

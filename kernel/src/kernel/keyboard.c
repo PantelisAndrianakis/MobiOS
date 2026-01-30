@@ -1,5 +1,4 @@
 // kernel/src/kernel/keyboard.c
-// NOTE: This code follows Allman style - all opening braces on new lines
 
 #include "keyboard.h"
 #include "kernel.h"

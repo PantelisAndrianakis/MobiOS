@@ -1,5 +1,4 @@
 // kernel/include/shell.h
-// NOTE: This code follows Allman style - all opening braces on new lines
 
 #ifndef SHELL_H
 #define SHELL_H

@@ -1,5 +1,4 @@
 // kernel/src/kernel/memory.c
-// NOTE: This code follows Allman style - all opening braces on new lines
 
 #include "kernel.h"
 

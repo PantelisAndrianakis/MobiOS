@@ -19,6 +19,10 @@ ASM_SOURCES = $(wildcard $(SRC_DIR)/asm/*.asm)
 ASM_OBJECTS = $(patsubst $(SRC_DIR)/asm/%.asm,$(BUILD_DIR)/%.o,$(ASM_SOURCES))
 C_SOURCES = $(wildcard $(SRC_DIR)/kernel/*.c)
 C_OBJECTS = $(patsubst $(SRC_DIR)/kernel/%.c,$(BUILD_DIR)/%.o,$(C_SOURCES))
+DRIVER_SOURCES = $(wildcard $(SRC_DIR)/drivers/*.c)
+DRIVER_OBJECTS = $(patsubst $(SRC_DIR)/drivers/%.c,$(BUILD_DIR)/%.o,$(DRIVER_SOURCES))
+FS_SOURCES = $(wildcard $(SRC_DIR)/fs/*.c)
+FS_OBJECTS = $(patsubst $(SRC_DIR)/fs/%.c,$(BUILD_DIR)/%.o,$(FS_SOURCES))
 
 # Output kernel binary
 KERNEL = $(BUILD_DIR)/mobios.bin
@@ -33,7 +37,7 @@ $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
 # Build kernel binary
-$(KERNEL): $(ASM_OBJECTS) $(C_OBJECTS)
+$(KERNEL): $(ASM_OBJECTS) $(C_OBJECTS) $(DRIVER_OBJECTS) $(FS_OBJECTS)
 	$(LD) $(LDFLAGS) -o $@ $^
 
 # Compile assembly files
@@ -42,6 +46,14 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/asm/%.asm
 
 # Compile C files
 $(BUILD_DIR)/%.o: $(SRC_DIR)/kernel/%.c
+	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -o $@ $<
+
+# Compile driver files
+$(BUILD_DIR)/%.o: $(SRC_DIR)/drivers/%.c
+	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -o $@ $<
+
+# Compile filesystem files
+$(BUILD_DIR)/%.o: $(SRC_DIR)/fs/%.c
 	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -o $@ $<
 
 # Create ISO image with GRUB
@@ -63,7 +75,12 @@ iso: $(KERNEL)
 
 # QEMU testing (using the ISO image)
 qemu: iso
-	qemu-system-x86_64 -cdrom mobios.iso -m 512M
+	@if [ ! -f disk.img ]; then \
+		echo "Creating virtual disk..."; \
+		qemu-img create -f raw disk.img 64M; \
+		mkfs.fat -F32 disk.img; \
+	fi
+	qemu-system-x86_64 -cdrom mobios.iso -hda disk.img -m 512M -nographic -serial mon:stdio
 
 qemu-debug: iso
 	qemu-system-x86_64 -cdrom mobios.iso -m 512M -s -S
